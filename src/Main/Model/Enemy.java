@@ -11,10 +11,10 @@ public class Enemy extends EntityGame{
 
     /**
      * Crea una entidad con ancho, alto, velocidad e imagen
-     * @param x
-     * @param y
-     * @param speed
-     * @param image
+     * @param x posicion inicial en X
+     * @param y posicion inicial en Y
+     * @param speed velocidad
+     * @param image imagen del enemigo
      */
     public Enemy(String type, int x, int y, int speed, Image image) {
         super(x, y, 52, 52, speed, image);
