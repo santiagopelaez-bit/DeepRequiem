@@ -11,7 +11,7 @@ public abstract class EntityGame {
     private int width;
     private int height;
     private int speed;
-    private Image image;
+    protected Image image;
 
     /**
      * Crea una entidad con ancho, alto, velocidad e imagen
@@ -47,7 +47,7 @@ public abstract class EntityGame {
     /**
      * Actualiza el estado de la entidad del juego
      */
-    public abstract void actualizar();
+    public abstract void update();
 
     /**
      * Getters y setters
