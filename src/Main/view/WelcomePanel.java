@@ -1,4 +1,8 @@
 package Main.view;
 
-public class WelcomePanel {
+import javax.swing.*;
+
+public class WelcomePanel extends JPanel {
+
+
 }
