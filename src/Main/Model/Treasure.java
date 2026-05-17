@@ -20,7 +20,6 @@ public class Treasure extends EntityGame{
         this.type = type;
         this.value = "chest".equals(type) ? 30 : 10;
     }
-
     /**
      * Metodo para actualizar la posicion del objeto
      */

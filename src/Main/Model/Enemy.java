@@ -33,7 +33,6 @@ public class Enemy extends EntityGame{
     public void moveUpdate(){
         y -= getSpeed();
     }
-
     /**
      * Dibuja al enemigo del juego
      * @param g usamos los Graphics para dibujar la entidad en caso de la imagen no este vacia

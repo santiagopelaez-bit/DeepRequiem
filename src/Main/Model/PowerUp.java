@@ -30,7 +30,6 @@ public class PowerUp extends EntityGame{
             diver.lifeRecover();
         }
     }
-
     /**
      * Metodo para dibujar el powerUP
      */

@@ -57,7 +57,6 @@ public class Diver extends EntityGame{
     public void update() {
         // El movimiento se controla desde otra clase
     }
-
     /**
      * Dibuja al buzo del juego
      * @param g usamos los Graphics para dibujar la entidad en caso de la imagen no este vacia

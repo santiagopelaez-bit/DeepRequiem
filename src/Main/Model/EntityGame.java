@@ -1,7 +1,6 @@
 package Main.Model;
 
 import java.awt.*;
-
 /**
  * Clase abstracta para todas las entidades del juego
  */
