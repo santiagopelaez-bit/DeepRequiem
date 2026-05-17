@@ -73,9 +73,9 @@ public class WelcomePanel extends JPanel {
             g.drawImage(fondo, 0, 0, getWidth(), getHeight(), null);
         }else{
 
-            BufferedImage backgroundMenu = (BufferedImage) ChargerResources.chargeImage("src/Main/resources/images/background/BackGroundMenu.png");
+            //BufferedImage backgroundMenu = (BufferedImage) ChargerResource.chargeImage("src/Main/resources/images/background/BackGroundMenu.png");
 
-            g.drawImage(backgroundMenu,0,0,900,650,this);
+           // g.drawImage(backgroundMenu,0,0,900,650,this);
 
         }
         if (logo != null) {
