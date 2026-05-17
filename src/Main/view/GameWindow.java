@@ -3,7 +3,13 @@ package Main.view;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * creamos una clase que contendra todo lo necesario para mostrar la ventana del juego
+ */
 public class GameWindow extends JFrame {
+    /**
+     * creamos el texto de las distintas partes del juego como el game over, la bienvenida, nombres e instrucciones
+     */
     public static final String BIENVENIDA = "bienvenida";
     public static final String INSTRUCCIONES = "instrucciones";
     public static final String NOMBRE = "nombre";
@@ -18,6 +24,10 @@ public class GameWindow extends JFrame {
     private final GamePanel gamePanel;
     private final GameOverPanel gameOverPanel;
 
+
+    /**
+     * ahora creamos un constructor que creara la ventana con sus distintos componentes
+     */
     public GameWindow() {
         setTitle("Tesoros del Abismo");
         setSize(900, 650);
@@ -40,6 +50,12 @@ public class GameWindow extends JFrame {
         contenedor.add(gameOverPanel, GAMEOVER);
         add(contenedor);
     }
+
+    /**
+     * aca creamos otros constructores que nos ayudaran a mostrar la ventana del juego,
+     * la ventana de bienvenida, las instrucciones, el nombre de los jugadores y la pantalla de gameover
+     * @param nombrePanel
+     */
     public void mostrarPanel(String nombrePanel) {
         cardLayout.show(contenedor, nombrePanel);
     }

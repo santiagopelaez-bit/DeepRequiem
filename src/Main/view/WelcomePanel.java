@@ -1,7 +1,10 @@
 package Main.view;
 
+import Main.Util.ChargerResources;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  * Creamos la clase que mostrara todo los componentes del menu de inicio
@@ -52,7 +55,7 @@ public class WelcomePanel extends JPanel {
     private JLabel etiqueta(String texto) {
         JLabel label = new JLabel(texto, JLabel.CENTER);
         label.setForeground(Color.WHITE);
-        //label.setFont(new Font("Arial", Font.BOLD, 20));
+
         return label;
     }
 
@@ -61,12 +64,19 @@ public class WelcomePanel extends JPanel {
      * ademas de agregar los botones definitivamente
      * @param g the <code>Graphics</code> object to protect
      */
+    ChargerResources resources;
     @Override
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (fondo != null) {
             g.drawImage(fondo, 0, 0, getWidth(), getHeight(), null);
+        }else{
+
+            BufferedImage backgroundMenu = (BufferedImage) ChargerResources.chargeImage("src/Main/resources/images/background/BackGroundMenu.png");
+
+            g.drawImage(backgroundMenu,0,0,900,650,this);
+
         }
         if (logo != null) {
             g.drawImage(logo, 30, 30, 100, 80, null);
