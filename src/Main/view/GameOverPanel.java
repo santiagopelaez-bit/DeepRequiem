@@ -4,38 +4,56 @@ import javax.swing.*;
 import java.awt.*;
 
 /***
- * Creamos una clase para la pantalla de game over en caso de que el jugador pierda
+ * Creamos una clase para la pantalla de game over
  */
 public class GameOverPanel extends JPanel {
-    /**
-     * creamos el boton de volver al menu de inicio, las imagenes de
-     */
+
     private final JButton volverainicio;
-  //  private final JPanel Ranking;
-  //  private final JLabel resumen;
+    private final JLabel titulo;
     private final Image fondo;
 
     /**
-     * esto es para cargar el fondo y los componentes de resources
+     * Constructor del panel que contendra la fuente pixeleada y el boton
      */
     public GameOverPanel() {
-        setLayout(new BorderLayout());
-        fondo = new ImageIcon(getClass().getResource("NombreTemporal.png")).getImage();
 
-        volverainicio = new JButton("Volver a la pantalla de carga");
+        setLayout(new BorderLayout());
+
+        fondo = new ImageIcon(getClass().getResource("BackGroundMenu.png")).getImage();
+
+
+        Font pixelFont = new Font("Monospaced", Font.BOLD, 28);
+        titulo = new JLabel("GAME OVER", JLabel.CENTER);
+        titulo.setFont(pixelFont);
+        titulo.setForeground(Color.WHITE);
+
+        add(titulo, BorderLayout.CENTER);
+        volverainicio = new JButton("Volver al inicio");
+        volverainicio.setFont(new Font("Monospaced", Font.BOLD, 18));
+
         add(volverainicio, BorderLayout.SOUTH);
     }
 
     /**
-     * Luego con esto nos encargamos de dibujar tanto el fondo como los distintos botones
-     * @param g the <code>Graphics</code> object to protect
+     * Dibujamos el fondo
      */
     @Override
-    protected void paintComponent(Graphics g){
+    protected void paintComponent(Graphics g) {
+
         super.paintComponent(g);
-        if(fondo == null){
+
+        if (fondo != null) {
+
             g.drawImage(fondo, 0, 0, getWidth(), getHeight(), null);
+
+        } else {
+
+            g.setColor(Color.BLACK);
+            g.fillRect(0, 0, getWidth(), getHeight());
         }
     }
-    public JButton getVolverainicio() {return volverainicio;}
+
+    public JButton getVolverainicio() {
+        return volverainicio;
+    }
 }
