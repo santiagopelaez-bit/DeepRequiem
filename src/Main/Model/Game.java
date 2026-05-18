@@ -19,6 +19,7 @@ public class Game {
     private Diver diver;
     private final List<Treasure> treasures;
     private final List<Enemy> enemies;
+    private final List<PowerUp> powerUps;
     private int time;
     private int deep;
     private int level;
@@ -29,6 +30,7 @@ public class Game {
         this.random = new Random();
         this.treasures = new ArrayList<>();
         this.enemies = new ArrayList<>();
+        this.powerUps = new ArrayList<>();
         restart();
     }
 
@@ -42,6 +44,7 @@ public class Game {
         diver = new Diver(name, PANEL_WIDTH / 2 - 29, PANEL_HEIGHT - 120, image);
         treasures.clear();
         enemies.clear();
+        powerUps.clear();
         time = 0;
         level  = 1;
         ticks = 0;
@@ -75,14 +78,19 @@ public class Game {
         // Ajustes de dificultad
         if(ticks % 45 == 0){
             String type = random.nextBoolean() ? "jellyfish" : "fish";
-            Image image = ChargerResource.chargeImage("images" + type + ".png");
+            Image image = ChargerResource.chargeImage("/images/" + type + ".png");
             enemies.add(new Enemy(type, randomX(52), PANEL_HEIGHT + 20, 2+ level, image));
         }
 
         if(ticks % 40 == 0){
             String type = random.nextInt(4) == 0 ? "chest" : "pearl";
-            Image image = ChargerResource.chargeImage("/images" + type + ".png");
+            Image image = ChargerResource.chargeImage("/images/" + type + ".png");
             treasures.add(new Treasure(type, randomX(42), PANEL_HEIGHT+ 20, image ) );
+        }
+
+        if(ticks % 6000 == 0){
+            Image image = ChargerResource.chargeImage("/images/powerup.png" );
+            powerUps.add(new PowerUp("Oxygen", randomX(40), PANEL_HEIGHT + 20, image));
         }
     }
 
@@ -107,6 +115,15 @@ public class Game {
                 iEnemy.remove();
             }
         }
+
+        Iterator<PowerUp> iPowerUP = powerUps.iterator();
+        while (iPowerUP.hasNext()){
+            PowerUp powerUp = iPowerUP.next();
+            if(diver.getBound().intersects(powerUp.getBound())){
+                powerUp.apply(diver);
+                iPowerUP.remove();
+            }
+        }
     }
 
     /**
@@ -116,6 +133,7 @@ public class Game {
         diver = null;
         treasures.clear();
         enemies.clear();
+        powerUps.clear();
         time = 0;
         deep = 0;
         level = 1;
@@ -134,6 +152,9 @@ public class Game {
             enemy.setSpeed(2 + level);
             enemy.update();
         }
+        for (PowerUp powerUp : powerUps){
+            powerUp.update();
+        }
     }
 
     /**
@@ -142,6 +163,7 @@ public class Game {
     private void cleanObjects(){
         treasures.removeIf(treasure -> treasure.getY() + treasure.getHeight() < 40);
         enemies.removeIf(enemy -> enemy.getY() + enemy.getHeight() < 40);
+        powerUps.removeIf(powerUp -> powerUp.getY() + powerUp.getHeight() < 40);
     }
 
     /**
@@ -162,6 +184,14 @@ public class Game {
 
     public List<Treasure> getTreasures() {
         return treasures;
+    }
+
+    public List<Enemy> getEnemies() {
+        return enemies;
+    }
+
+    public List<PowerUp> getPowerUps() {
+        return powerUps;
     }
 
     public int getTime() {
