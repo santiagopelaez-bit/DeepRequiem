@@ -1,6 +1,6 @@
 package Main.view;
 
-import Main.Util.ChargerResources;
+import Main.resources.ChargerResource;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,6 +28,7 @@ public class WelcomePanel extends JPanel {
         JLabel titulo = new JLabel("Deep Requiem", JLabel.CENTER);
 
 
+
         JPanel PanelCentro = new JPanel(new GridLayout(5, 1, 8, 8));
         PanelCentro.setOpaque(false);
         PanelCentro.add(etiqueta("Materia: Programacion Orientada a Objetos"));
@@ -36,6 +37,8 @@ public class WelcomePanel extends JPanel {
         PanelCentro.add(etiqueta("Universidad Autonoma de Manizales"));
         PanelCentro.add(etiqueta("Adentrate en el lugar mas profundo de la tierra y encuentra valiosos tesoros"));
 
+        fondo = new ImageIcon(getClass().getResource("BackGroundMenu.png")).getImage();
+        logo = new ImageIcon(getClass().getResource("LogoUam.png")).getImage();
         JPanel botones = new JPanel();
         botones.setOpaque(false);
         iniciar = new JButton(" Iniciar la aventura ");
@@ -64,7 +67,7 @@ public class WelcomePanel extends JPanel {
      * ademas de agregar los botones definitivamente
      * @param g the <code>Graphics</code> object to protect
      */
-    ChargerResources resources;
+    ChargerResource resources;
     @Override
 
     protected void paintComponent(Graphics g) {
@@ -73,9 +76,9 @@ public class WelcomePanel extends JPanel {
             g.drawImage(fondo, 0, 0, getWidth(), getHeight(), null);
         }else{
 
-            //BufferedImage backgroundMenu = (BufferedImage) ChargerResource.chargeImage("src/Main/resources/images/background/BackGroundMenu.png");
+            BufferedImage backgroundMenu = (BufferedImage) ChargerResource.chargeImage("src/Main/resources/images/background/BackGroundMenu.png");
 
-           // g.drawImage(backgroundMenu,0,0,900,650,this);
+            g.drawImage(backgroundMenu,0,0,900,650,this);
 
         }
         if (logo != null) {
