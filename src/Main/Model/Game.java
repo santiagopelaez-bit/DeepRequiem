@@ -15,6 +15,7 @@ public class Game {
     public static final int PANEL_WIDTH = 900;
     public static final int PANEL_HEIGHT = 650;
 
+    private Ranking ranking;
     private final Random random;
     private Diver diver;
     private final List<Treasure> treasures;
@@ -25,8 +26,10 @@ public class Game {
     private int level;
     private int ticks;
     private boolean end;
+    private boolean endGame;
 
-    public Game(){
+    public Game(Ranking ranking){
+        this.ranking = ranking;
         this.random = new Random();
         this.treasures = new ArrayList<>();
         this.enemies = new ArrayList<>();
@@ -49,6 +52,7 @@ public class Game {
         level  = 1;
         ticks = 0;
         end = false;
+        endGame = false;
     }
 
     /**
@@ -69,6 +73,10 @@ public class Game {
         checkCollisions();
         updateEntity();
         cleanObjects();
+
+        if(diver.getLifes() <= 0){
+            EndGame();
+        }
     }
 
     /**
@@ -139,6 +147,7 @@ public class Game {
         level = 1;
         ticks = 0;
         end = false;
+        endGame = false;
     }
 
     /**
@@ -154,6 +163,18 @@ public class Game {
         }
         for (PowerUp powerUp : powerUps){
             powerUp.update();
+        }
+    }
+
+    public void EndGame(){
+        end = true;
+        if(!endGame){
+            ranking.addPlayer(new PlayerRegister
+                    (diver.getNamePlayer(),
+                            diver.getScore(),
+                            time,
+                            deep));
+            endGame = true;
         }
     }
 
