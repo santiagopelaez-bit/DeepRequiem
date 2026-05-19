@@ -1,5 +1,10 @@
 package Main.view;
 
+import Main.Model.Enemy;
+import Main.Model.Game;
+import Main.Model.PowerUp;
+import Main.Model.Treasure;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,6 +12,8 @@ import java.awt.*;
  * creamos el Panel principal del juego
  */
 public class GamePanel extends JPanel {
+
+    private Game game;
 
     /**
      * creamos el fondo y la fuente pixeleada
@@ -24,6 +31,15 @@ public class GamePanel extends JPanel {
     }
 
     /**
+     * Asocia el modelo que debe dibujar
+     */
+    public void setGame(Game game) {
+
+        this.game = game;
+
+    }
+
+    /**
      * Dibujamos todos los elementos del juego
      */
     @Override
@@ -32,13 +48,35 @@ public class GamePanel extends JPanel {
         super.paintComponent(g);
 
         dibujarFondo(g);
+
+        if (game == null || game.getDiver() == null) {
+
+            return;
+
+        }
+
         dibujarHUD(g);
 
-        // Aca luego se dibujaran:
-        // jugador
-        // enemigos
-        // tesoros
-        // powerups
+        for (Treasure treasure : game.getTreasures()) {
+
+            treasure.dibujar(g);
+
+        }
+
+        for (PowerUp powerUp : game.getPowerUps()) {
+
+            powerUp.dibujar(g);
+
+        }
+
+        for (Enemy enemy : game.getEnemies()) {
+
+            enemy.dibujar(g);
+
+        }
+
+        game.getDiver().dibujar(g);
+
     }
 
     /**

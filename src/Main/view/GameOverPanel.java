@@ -1,7 +1,10 @@
 package Main.view;
 
+import Main.Model.Ranking;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 /***
  * Creamos una clase para la pantalla de game over
@@ -35,6 +38,49 @@ public class GameOverPanel extends JPanel {
     }
 
     /**
+     * Actualiza datos finales de la partida
+     */
+    public void showResults(String nombre, int score, int time, int deep, Ranking ranking) {
+
+        resumen.setText("Jugador: " + nombre + "\nPuntaje: " + score + "\nTiempo: " + time + "s\nProfundidad: " + deep + "m");
+
+        RakingPanel.removeAll();
+
+        RankingPanel.add(etiqueta("Ranking Top 3"));
+
+        List<JugadorRegistro> top = ranking.getTop3();
+
+        for (int i = 0; i < top.size(); i++) {
+
+            JugadorRegistro registro = top.get(i);
+
+            RankingPanel.add(etiqueta((i + 1) + ". " + registro.getNombre() + " - " + registro.getScore() + " puntos."));
+
+        }
+
+        while (RankingPanel.getComponentCount() < 4) {
+
+            RankingPanel.add(etiqueta("-"));
+
+        }
+
+        revalidate();
+        repaint();
+
+    }
+
+    private JLabel etiqueta(String text) {
+
+        JLabel label = new JLabel(text, JLabel.CENTER);
+
+        label.setForeground(Color.WHITE);
+        label.setFont(new Font("", Font.PLAIN, 18));
+
+        return label;
+
+    }
+
+    /**
      * Dibujamos el fondo
      */
     @Override
@@ -56,4 +102,6 @@ public class GameOverPanel extends JPanel {
     public JButton getVolverainicio() {
         return volverainicio;
     }
+
+
 }

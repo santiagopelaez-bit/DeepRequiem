@@ -159,7 +159,7 @@ public class ControllerGame {
         panelGameOver.showResults(
                 diver.getNamePlayer(),
                 diver.getScore(),
-                diver.getTimeSeconds(),
+                diver.getTime(),
                 diver.getDeep(),
                 diver.getRanking());
 

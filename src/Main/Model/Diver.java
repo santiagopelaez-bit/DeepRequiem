@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * Clase del jugador del juego
  */
-public class Diver extends EntityGame{
+public class Diver extends EntityGame {
     private final static int MAX_LIFES = 5;
     private int lifes;
     private int score;
@@ -14,10 +14,11 @@ public class Diver extends EntityGame{
 
     /**
      * Crea un jugador con 3 vidas y puntaje en cero
+     *
      * @param namePlayer nombre del jugador
-     * @param x posicion X inicial
-     * @param y posicion Y inicial
-     * @param image imagen del jugador
+     * @param x          posicion X inicial
+     * @param y          posicion Y inicial
+     * @param image      imagen del jugador
      */
     public Diver(String namePlayer, int x, int y, Image image) {
         super(x, y, 58, 58, 6, image);
@@ -33,22 +34,24 @@ public class Diver extends EntityGame{
 
     /**
      * Metodo para sumar los puntos al jugador
+     *
      * @param points puntos del juego
      */
-    public void sumPoints(int points){
+    public void sumPoints(int points) {
         score += points;
     }
 
     /**
      * Metodo para que el jugador pierda vidas
+     *
      * @param amount cantidad de vidas a perder
      */
-    public void loseLife(int amount){
+    public void loseLife(int amount) {
         lifes = Math.max(0, lifes - amount);
     }
 
 
-    public void lifeRecover(){
+    public void lifeRecover() {
         lifes = Math.min(MAX_LIFES, lifes + 1);
         efectoPowerActivo = true;
     }
@@ -57,12 +60,14 @@ public class Diver extends EntityGame{
     public void update() {
         // El movimiento se controla desde otra clase
     }
+
     /**
      * Dibuja al buzo del juego
+     *
      * @param g usamos los Graphics para dibujar la entidad en caso de la imagen no este vacia
      */
-    public void dibujar(Graphics g){
-        if(image != null){
+    public void dibujar(Graphics g) {
+        if (image != null) {
             g.drawImage(image, x, y, getWidth(), getHeight(), null);
         }
     }
@@ -97,4 +102,5 @@ public class Diver extends EntityGame{
     public void setEfectoPowerActivo(boolean efectoPowerActivo) {
         this.efectoPowerActivo = efectoPowerActivo;
     }
+
 }
