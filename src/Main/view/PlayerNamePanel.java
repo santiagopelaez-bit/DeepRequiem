@@ -1,5 +1,7 @@
 package Main.view;
 
+import Main.resources.ChargerResource;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -10,6 +12,7 @@ public class PlayerNamePanel extends JPanel {
     /**
      *Aca creamos el boton para empezar, la fuente pixeleada y el campo donde se ingresara el nombre del jugador
      */
+    private final Image fondo;
     private final JTextField campoNombre;
     private final JButton botonEmpezar;
     private final Font pixelFont;
@@ -22,6 +25,7 @@ public class PlayerNamePanel extends JPanel {
     public PlayerNamePanel() {
         pixelFont = new Font("Monospaced", Font.BOLD, 24);
         setLayout(new GridBagLayout());
+        fondo = ChargerResource.chargeImage("/Main/resources/images/background/BackGroundGame.png");
         setBackground(new Color(10, 55, 90));
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(15, 15, 15, 15);
@@ -72,5 +76,10 @@ public class PlayerNamePanel extends JPanel {
     public JButton getBotonEmpezar() {
 
         return botonEmpezar;
+    }
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(fondo, 0, 0, getWidth(), getHeight(),  this);
     }
 }
