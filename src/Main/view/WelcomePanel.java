@@ -16,6 +16,7 @@ public class WelcomePanel extends JPanel {
     private final JButton iniciar;
     private final Image background = ChargerResource.chargeImage("/Main/resources/images/background/BackGroundMenu.png");
     private final Image logoUam = ChargerResource.chargeImage("/Main/resources/images/icons/LogoUam.png");
+    private final Font pixelText;
 
     /**
      * con este metodo nos encargamos de que en pantalla se muestre el titulo del juego, la materia del proyecto
@@ -24,15 +25,23 @@ public class WelcomePanel extends JPanel {
      */
     public WelcomePanel() {
         setLayout(new BorderLayout());
+        pixelText = new Font("Monospaced", Font.BOLD, 20);
         JLabel titulo = new JLabel("Deep Requiem", JLabel.CENTER);
 
 
         JPanel PanelCentro = new JPanel(new GridLayout(5, 1, 8, 8));
         PanelCentro.setOpaque(false);
         PanelCentro.add(etiqueta("Materia: Programacion Orientada a Objetos"));
-        PanelCentro.add(etiqueta("Integrantes: Santiago Pelaez Velez - Brayan Sanchez Amariles - Andres Londoño Tavares"));
+        PanelCentro.add(etiqueta("<html><center>" +
+                "Integrantes:<br>" +
+                "Santiago Pelaez Velez<br>" +
+                "Brayan Sanchez Amariles<br>" +
+                "Andrés Felipe Londoño Tabares<br>" +
+                "</center></html>"));
         PanelCentro.add(etiqueta("Universidad Autonoma de Manizales"));
-        PanelCentro.add(etiqueta("Adentrate en el lugar mas profundo de la tierra y encuentra valiosos tesoros"));
+        PanelCentro.add(etiqueta("<html><center>" +
+                "Adentrate en el lugar mas profundo de la tierra<br>" +
+                " y encuentra valiosos tesoros </center></html>" ));
 
         JPanel botones = new JPanel();
         botones.setOpaque(false);
@@ -54,7 +63,7 @@ public class WelcomePanel extends JPanel {
     private JLabel etiqueta(String texto) {
         JLabel label = new JLabel(texto, JLabel.CENTER);
         label.setForeground(Color.WHITE);
-
+        label.setFont(pixelText);
         return label;
     }
 
