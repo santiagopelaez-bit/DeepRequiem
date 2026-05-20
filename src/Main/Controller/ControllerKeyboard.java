@@ -1,6 +1,7 @@
 package Main.Controller;
 
 import Main.Model.Diver;
+import Main.Model.Game;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -10,10 +11,11 @@ import java.awt.event.KeyEvent;
  */
 public class ControllerKeyboard extends KeyAdapter implements ControllerInput {
 
-
     private boolean up, down, right, left;
 
     private boolean pause;
+
+    private Game game;
 
     /**
      * Este método nos ayuda a cambiar de estado una tecla a "false" o a "true"
@@ -22,6 +24,8 @@ public class ControllerKeyboard extends KeyAdapter implements ControllerInput {
      * @param active
      */
     private void changeState(int KeyCode, boolean active) {
+
+        this.game = game;
 
         if (KeyCode == KeyEvent.VK_W || KeyCode == KeyEvent.VK_UP) {
 
@@ -109,19 +113,31 @@ public class ControllerKeyboard extends KeyAdapter implements ControllerInput {
         double speed = diver.getSpeed();
 
         if (up) {
+
             dy -= speed;
+
+            diver.lookUp();
+
         }
 
         if (down) {
             dy += speed;
+
+            diver.lookDown();
+
         }
 
         if (left) {
             dx -= speed;
+
+            diver.lookLeft();
+
         }
 
         if (right) {
             dx += speed;
+
+            diver.lookRight();
         }
 
         if (dx != 0 && dy != 0) {
@@ -132,8 +148,16 @@ public class ControllerKeyboard extends KeyAdapter implements ControllerInput {
 
         }
 
+        if (up && right) {
 
-        diver.move(dx, dy, Game.WIDHT_PANEL, Game.HEIGHT_PANEL);
+            dx += speed;
+            dy -= speed;
+
+            diver.lookUpRight();
+
+        }
+
+        diver.move(dx, dy, game.PANEL_WIDTH, game.PANEL_HEIGHT);
 
     }
 }
