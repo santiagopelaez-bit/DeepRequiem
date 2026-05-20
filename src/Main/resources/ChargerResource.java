@@ -42,7 +42,7 @@ public class ChargerResource {
      */
     public static AudioInputStream chargeSound(String ruta) {
 
-        URL audio = AudioInputStream.class.getResource(ruta);
+        URL audio = ChargerResource.class.getResource(ruta);
 
         if (audio == null) {
 
