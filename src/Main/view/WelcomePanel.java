@@ -4,7 +4,6 @@ import Main.resources.ChargerResource;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 /**
  * Creamos la clase que mostrara todo los componentes del menu de inicio
@@ -15,8 +14,8 @@ public class WelcomePanel extends JPanel {
      */
     private final JButton instrucciones;
     private final JButton iniciar;
-    private final Image fondo;
-    private final Image logo;
+    private final Image background = ChargerResource.chargeImage("/Main/resources/images/background/BackGroundMenu.png");
+    private final Image logoUam = ChargerResource.chargeImage("/Main/resources/images/icons/LogoUam.png");
 
     /**
      * con este metodo nos encargamos de que en pantalla se muestre el titulo del juego, la materia del proyecto
@@ -28,17 +27,13 @@ public class WelcomePanel extends JPanel {
         JLabel titulo = new JLabel("Deep Requiem", JLabel.CENTER);
 
 
-
         JPanel PanelCentro = new JPanel(new GridLayout(5, 1, 8, 8));
         PanelCentro.setOpaque(false);
         PanelCentro.add(etiqueta("Materia: Programacion Orientada a Objetos"));
-        // TODO: Reemplazar por nombres reales de integrantes.
         PanelCentro.add(etiqueta("Integrantes: Santiago Pelaez Velez - Brayan Sanchez Amariles - Andres Londoño Tavares"));
         PanelCentro.add(etiqueta("Universidad Autonoma de Manizales"));
         PanelCentro.add(etiqueta("Adentrate en el lugar mas profundo de la tierra y encuentra valiosos tesoros"));
 
-        fondo = new ImageIcon(getClass().getResource("BackGroundMenu.png")).getImage();
-        logo = new ImageIcon(getClass().getResource("LogoUam.png")).getImage();
         JPanel botones = new JPanel();
         botones.setOpaque(false);
         iniciar = new JButton(" Iniciar la aventura ");
@@ -52,6 +47,7 @@ public class WelcomePanel extends JPanel {
     /**
      * con esto nos encargamos de crear la etiqueta del texto de cada uno de los botones e informacion del prouecto
      * que pusimos antes
+     *
      * @param texto
      * @return
      */
@@ -65,26 +61,28 @@ public class WelcomePanel extends JPanel {
     /**
      * con esto nos encargamos de que se muestre la imagen y el logo de la universidad en pantalla
      * ademas de agregar los botones definitivamente
+     *
      * @param g the <code>Graphics</code> object to protect
      */
     ChargerResource resources;
+
     @Override
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if (fondo != null) {
-            g.drawImage(fondo, 0, 0, getWidth(), getHeight(), null);
-        }else{
-
-            BufferedImage backgroundMenu = (BufferedImage) ChargerResource.chargeImage("src/Main/resources/images/background/BackGroundMenu.png");
-
-            g.drawImage(backgroundMenu,0,0,900,650,this);
-
+        if (background != null) {
+            g.drawImage(background, 0, 0, getWidth(), getHeight(), null);
         }
-        if (logo != null) {
-            g.drawImage(logo, 30, 30, 100, 80, null);
+        if (logoUam != null) {
+            g.drawImage(logoUam, 30, 30, 100, 80, null);
         }
     }
-    public JButton getIniciar() {return iniciar;}
-    public JButton getInstrucciones() {return instrucciones;}
+
+    public JButton getIniciar() {
+        return iniciar;
+    }
+
+    public JButton getInstrucciones() {
+        return instrucciones;
+    }
 }

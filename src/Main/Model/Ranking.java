@@ -20,11 +20,16 @@ public class Ranking {
     public Ranking() {
         registers = new ArrayList<>();
     }
+
     /**
      * agregamos los datos de una partida al historial de la memoria
      */
     public void addPlayer(PlayerRegister register) {
         registers.add(register);
+    }
+
+    public List<PlayerRegister> getRegisters() {
+        return registers;
     }
 
     /**
@@ -35,5 +40,8 @@ public class Ranking {
         List<PlayerRegister> copia = new ArrayList<>(registers);
         copia.sort(Comparator.comparingInt(PlayerRegister::getPuntaje).reversed());
         return copia.subList(0, Math.min(3, copia.size()));
+    }
+
+    public void addPlayer(Diver diver) {
     }
 }

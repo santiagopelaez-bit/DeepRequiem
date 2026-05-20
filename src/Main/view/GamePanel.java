@@ -1,5 +1,8 @@
 package Main.view;
 
+import Main.Model.*;
+import Main.resources.ChargerResource;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,6 +10,8 @@ import java.awt.*;
  * creamos el Panel principal del juego
  */
 public class GamePanel extends JPanel {
+
+    private Game game;
 
     /**
      * creamos el fondo y la fuente pixeleada
@@ -19,8 +24,17 @@ public class GamePanel extends JPanel {
      */
     public GamePanel() {
         setFocusable(true);
-        fondo = new ImageIcon(getClass().getResource("BackGroundMenu.png")).getImage();
+        fondo = ChargerResource.chargeImage("/Main/resources/images/background/BackGroundGame.png");
         pixelFont = new Font("Monospaced", Font.BOLD, 18);
+    }
+
+    /**
+     * Asocia el modelo que debe dibujar
+     */
+    public void setGame(Game game) {
+
+        this.game = game;
+
     }
 
     /**
@@ -32,13 +46,35 @@ public class GamePanel extends JPanel {
         super.paintComponent(g);
 
         dibujarFondo(g);
+
+        if (game == null || game.getDiver() == null) {
+
+            return;
+
+        }
+
         dibujarHUD(g);
 
-        // Aca luego se dibujaran:
-        // jugador
-        // enemigos
-        // tesoros
-        // powerups
+        for (Treasure treasure : game.getTreasures()) {
+
+            treasure.dibujar(g);
+
+        }
+
+        for (PowerUp powerUp : game.getPowerUps()) {
+
+            powerUp.dibujar(g);
+
+        }
+
+        for (Enemy enemy : game.getEnemies()) {
+
+            enemy.dibujar(g);
+
+        }
+
+        game.getDiver().dibujar(g);
+
     }
 
     /**
@@ -63,14 +99,17 @@ public class GamePanel extends JPanel {
      * se dibuja la parte de las vidas, puntaje, niveles y tiempo
      */
     private void dibujarHUD(Graphics g) {
-        g.setColor(new Color(0, 0, 0, 150));
-        g.fillRect(0, 0, getWidth(), 45);
+        Diver diver = game.getDiver();
+        g.setColor(new Color(0, 0, 0, 140));
+        g.fillRect(0, 0, getWidth(), 40);
         g.setColor(Color.WHITE);
         g.setFont(pixelFont);
 
-        g.drawString("PUNTAJE: 0", 20, 30);
-        g.drawString("VIDAS: 3", 250, 30);
-        g.drawString("NIVEL: 1", 450, 30);
-        g.drawString("TIEMPO: 0", 650, 30);
+        g.drawString("NOMBRE: " + diver.getNamePlayer(), 15, 25);
+        g.drawString("PUNTAJE: " + diver.getScore(), 190, 25);
+        g.drawString("VIDAS: " + diver.getLifes(), 310, 25);
+        g.drawString("NIVEL: " + game.getLevel(), 700, 25);
+        g.drawString("PROFUNDIDAD: " + game.getDeep() + "m", 520, 25);
+        g.drawString("TIEMPO: " + game.getTime() + "s", 400, 25);
     }
 }

@@ -5,14 +5,15 @@ import java.awt.*;
 /**
  * Clase de los enemigos del juego
  */
-public class Enemy extends EntityGame{
+public class Enemy extends EntityGame {
     private final String type;
     private final int damage;
 
     /**
      * Crea una entidad con ancho, alto, velocidad e imagen
-     * @param x posicion inicial en X
-     * @param y posicion inicial en Y
+     *
+     * @param x     posicion inicial en X
+     * @param y     posicion inicial en Y
      * @param speed velocidad
      * @param image imagen del enemigo
      */
@@ -30,15 +31,18 @@ public class Enemy extends EntityGame{
     /**
      * Mueve el enemigo hacia arriba para simular que el buzo se sumerge
      */
-    public void moveUpdate(){
+    public void moveUpdate() {
         y -= getSpeed();
     }
+
     /**
      * Dibuja al enemigo del juego
+     *
      * @param g usamos los Graphics para dibujar la entidad en caso de la imagen no este vacia
      */
-    public void dibujar(Graphics g){
-        if(image != null){
+    public void dibujar(Graphics g) {
+        if (image != null) {
+
             g.drawImage(image, x, y, getWidth(), getHeight(), null);
         }
     }
