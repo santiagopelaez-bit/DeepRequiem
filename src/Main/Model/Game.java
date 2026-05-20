@@ -85,8 +85,8 @@ public class Game {
     public void generateObjects(){
         // Ajustes de dificultad
         if(ticks % 45 == 0){
-            String type = "jellyfish";
-            Image image = ChargerResource.chargeImage("/Main/resources/images/Jellyfish/Jellyfish_MediumFrame.png");
+            String type = random.nextBoolean() ? "Jellyfish" : "puffer_fish";
+            Image image = ChargerResource.chargeImage("/Main/resources/images/enemies/"+ type +".png");
             enemies.add(new Enemy(type, randomX(52), PANEL_HEIGHT + 20, 2+ level, image));
         }
 
