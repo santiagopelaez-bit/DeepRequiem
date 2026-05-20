@@ -96,6 +96,8 @@ public class ControllerKeyboard extends KeyAdapter implements ControllerInput {
 
     /**
      * Método que administra el movimiento del jugador en las direcciones que se presionen con el teclado.
+     * <p>
+     * Los sprites van cambiando a medida de que se mueve el jugador, cambian dependiendo de la dirección del jugador.
      *
      * @param diver Jugador que se debe mover
      */
@@ -112,32 +114,56 @@ public class ControllerKeyboard extends KeyAdapter implements ControllerInput {
         double dy = 0;
         double speed = diver.getSpeed();
 
-        if (up) {
+
+        if (up && right) {
+
+            dx += speed;
+            dy -= speed;
+
+            diver.lookUpRight();
+
+        } else if (up && left) {
+
+            dx -= speed;
+            dy -= speed;
+
+            diver.lookUpLeft();
+
+        } else if (down && left) {
+
+            dx -= speed;
+            dy += speed;
+
+            diver.lookDownLeft();
+
+        } else if (down && right) {
+
+            dx += speed;
+            dy += speed;
+
+            diver.lookDownRight();
+
+        } else if (up) {
 
             dy -= speed;
 
             diver.lookUp();
 
-        }
-
-        if (down) {
+        } else if (down) {
             dy += speed;
 
             diver.lookDown();
 
-        }
-
-        if (left) {
+        } else if (left) {
             dx -= speed;
 
             diver.lookLeft();
 
-        }
-
-        if (right) {
+        } else if (right) {
             dx += speed;
 
             diver.lookRight();
+
         }
 
         if (dx != 0 && dy != 0) {
@@ -148,16 +174,8 @@ public class ControllerKeyboard extends KeyAdapter implements ControllerInput {
 
         }
 
-        if (up && right) {
 
-            dx += speed;
-            dy -= speed;
-
-            diver.lookUpRight();
-
-        }
-
-        diver.move(dx, dy, game.PANEL_WIDTH, game.PANEL_HEIGHT);
+        diver.move((int) dx, (int) dy, game.PANEL_WIDTH, game.PANEL_HEIGHT);
 
     }
 }
