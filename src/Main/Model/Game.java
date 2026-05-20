@@ -62,7 +62,7 @@ public class Game {
         if(end || diver == null){
             return;
         }
-        ticks++;
+        ticks+= 2;
         if(ticks % 60 == 0){
             time++;
             deep += 5;
@@ -84,7 +84,7 @@ public class Game {
      */
     public void generateObjects(){
         // Ajustes de dificultad
-        if(ticks % 45 == 0){
+        if(ticks % 30 == 0){
             String type = random.nextBoolean() ? "Jellyfish" : "puffer_fish";
             Image image = ChargerResource.chargeImage("/Main/resources/images/enemies/"+ type +".png");
             enemies.add(new Enemy(type, randomX(52), PANEL_HEIGHT + 20, 2+ level, image));
@@ -96,7 +96,7 @@ public class Game {
             treasures.add(new Treasure(type, randomX(42), PANEL_HEIGHT+ 20, image ) );
         }
 
-        if(ticks % 6000 == 0){
+        if(ticks % 1200 == 0){
             Image image = ChargerResource.chargeImage("/Main/resources/images/objects/powerUp.png" );
             powerUps.add(new PowerUp("oxigeno", randomX(40), PANEL_HEIGHT + 20, image));
         }
