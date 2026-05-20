@@ -2,6 +2,7 @@ package Main.Controller;
 
 import Main.Model.Diver;
 import Main.Model.Game;
+import Main.Model.Ranking;
 import Main.resources.ChargerResource;
 import Main.resources.ReproduceSound;
 import Main.view.GameOverPanel;
@@ -17,6 +18,7 @@ import java.util.List;
  */
 public class ControllerGame {
 
+    private final Ranking ranking;
     private final Game game;
     private final GamePanel gamePanel;
     private final GameOverPanel panelGameOver;
@@ -49,6 +51,7 @@ public class ControllerGame {
         addInput(controllerKeyboard);
         addInput(new ControllerJoystick());
 
+        ranking = new Ranking();
 
     }
 
@@ -148,6 +151,10 @@ public class ControllerGame {
 
     }
 
+    /**
+     * Al terminar el juego se cambia de panel al panel de GameOver donde se reproduce el sonido final y se detiene el juego
+     * Y también se muestran resultados obtenidos por el Buzo
+     */
     private void finishGame() {
 
         detener();
@@ -156,17 +163,19 @@ public class ControllerGame {
 
         Diver diver = game.getDiver();
 
-        panelGameOver.showResults(
-                diver.getNamePlayer(),
-                diver.getScore(),
-                diver.getTime(),
-                diver.getDeep(),
-                diver.getRanking());
+        ranking.addPlayer(diver);
+
+        panelGameOver.showResults(diver.getNamePlayer(), diver.getScore(), game.getTime(), game.getDeep(), ranking);
 
         gameWindow.mostrarPanel(GameWindow.GAMEOVER);
 
     }
 
+    /**
+     * Inicia el hilo que nos ayudará con las animaciones
+     * <p>
+     * El estado visual cambia cada 250ms yse repinta automaticamente
+     */
     private void startThreadAnimation() {
 
         animationActive = true;

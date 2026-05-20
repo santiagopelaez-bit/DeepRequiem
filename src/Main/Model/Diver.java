@@ -1,5 +1,7 @@
 package Main.Model;
 
+import Main.resources.ChargerResource;
+
 import java.awt.*;
 
 /**
@@ -12,6 +14,19 @@ public class Diver extends EntityGame {
     private final String namePlayer;
     private boolean efectoPowerActivo;
 
+    private Image diverUp;
+    private Image diverDown;
+    private Image diverRight;
+    private Image diverLeft;
+
+    private Image diverUpRight;
+    private Image diverUpLeft;
+    private Image diverDownLeft;
+    private Image diverDownRight;
+
+    private Image currentSprite;
+
+
     /**
      * Crea un jugador con 3 vidas y puntaje en cero
      *
@@ -21,11 +36,78 @@ public class Diver extends EntityGame {
      * @param image      imagen del jugador
      */
     public Diver(String namePlayer, int x, int y, Image image) {
+
         super(x, y, 58, 58, 6, image);
         this.namePlayer = namePlayer;
         this.lifes = 3;
         this.score = 0;
+
+        diverDown = ChargerResource.chargeImage("/src/Main/resources/images/player/playerDown.png");
+        diverUp = ChargerResource.chargeImage("/src/Main/resources/images/player/playerUp.png");
+        diverLeft = ChargerResource.chargeImage("/src/Main/resources/images/player/playerLeft.png");
+        diverRight = ChargerResource.chargeImage("/src/Main/resources/images/player/playerRight.png");
+        diverDownLeft = ChargerResource.chargeImage("/src/Main/resources/images/player/playerDownLeft.png");
+        diverDownRight = ChargerResource.chargeImage("/src/Main/resources/images/player/playerDownRight.png");
+        diverUpLeft = ChargerResource.chargeImage("/src/Main/resources/images/player/playerUp_Left.png");
+        diverUpRight = ChargerResource.chargeImage("/src/Main/resources/images/player/playerUp_Right.png");
+
+
     }
+
+    public Image getCurrentSprite() {
+
+        return currentSprite;
+
+    }
+
+    public void lookRight() {
+
+        currentSprite = diverRight;
+
+    }
+
+    public void lookLeft() {
+
+        currentSprite = diverLeft;
+
+    }
+
+    public void lookDown() {
+
+        currentSprite = diverDown;
+
+    }
+
+    public void lookUp() {
+
+        currentSprite = diverUp;
+
+    }
+
+    public void lookUpRight() {
+
+        currentSprite = diverUpRight;
+
+    }
+
+    public void lookUpLeft() {
+
+        currentSprite = diverUpLeft;
+
+    }
+
+    public void lookDownLeft() {
+
+        currentSprite = diverDownLeft;
+
+    }
+
+    public void lookDownRight() {
+
+        currentSprite = diverDownRight;
+
+    }
+
 
     public void move(int dx, int dy, int limiteAncho, int limiteAlto) {
         x = Math.max(0, Math.min(limiteAncho - getWidth(), x + dx));
