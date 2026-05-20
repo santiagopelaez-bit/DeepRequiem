@@ -91,8 +91,8 @@ public class Game {
         }
 
         if(ticks % 40 == 0){
-            String type = "chest";
-            Image image = ChargerResource.chargeImage("/Main/resources/images/objects/chest.png");
+            String type = random.nextInt(4) == 0 ? "chest" : "EnderPearl";
+            Image image = ChargerResource.chargeImage("/Main/resources/images/objects/" + type +".png");
             treasures.add(new Treasure(type, randomX(42), PANEL_HEIGHT+ 20, image ) );
         }
 
