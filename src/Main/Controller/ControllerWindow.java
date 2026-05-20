@@ -4,7 +4,6 @@ import Main.Model.Game;
 import Main.Model.Ranking;
 import Main.resources.ReproduceSound;
 import Main.view.GameWindow;
-import Main.view.WelcomePanel;
 
 public class ControllerWindow {
 
@@ -17,7 +16,7 @@ public class ControllerWindow {
      * Registramos eventos de los botones y crea el modelo compartido
      */
 
-    public ControllerWindow(WelcomePanel welcome) {
+    public ControllerWindow() {
 
         this.gameWindow = new GameWindow();
         this.juego = new Game(new Ranking());
@@ -28,13 +27,13 @@ public class ControllerWindow {
 
         gameWindow.mostrarPanel(GameWindow.BIENVENIDA);
 
-        reproduceSound.reproduce("src/Main/resources/sounds/SoundTrack.mp3");
+        reproduceSound.reproduce("/Main/resources/sounds/SoundTrack.mp3");
 
     }
 
     private void registerEvents() {
 
-        gameWindow.getPanelNombreJugador().getBotonEmpezar().addActionListener(e -> {
+        gameWindow.getPanelBienvenida().getIniciar().addActionListener(e -> {
 
             gameWindow.getPanelNombreJugador().limpiar();
 
@@ -69,6 +68,12 @@ public class ControllerWindow {
         controllerGaming.start(gameWindow.getPanelNombreJugador().getNombreJugador());
         gameWindow.mostrarPanel(GameWindow.JUEGO);
         gameWindow.getPanelJuego().requestFocusInWindow();
+
+    }
+
+    public void show() {
+
+        gameWindow.setVisible(true);
 
     }
 

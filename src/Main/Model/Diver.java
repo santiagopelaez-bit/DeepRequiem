@@ -42,14 +42,15 @@ public class Diver extends EntityGame {
         this.lifes = 3;
         this.score = 0;
 
-        diverDown = ChargerResource.chargeImage("/src/Main/resources/images/player/playerDown.png");
-        diverUp = ChargerResource.chargeImage("/src/Main/resources/images/player/playerUp.png");
-        diverLeft = ChargerResource.chargeImage("/src/Main/resources/images/player/playerLeft.png");
-        diverRight = ChargerResource.chargeImage("/src/Main/resources/images/player/playerRight.png");
-        diverDownLeft = ChargerResource.chargeImage("/src/Main/resources/images/player/playerDownLeft.png");
-        diverDownRight = ChargerResource.chargeImage("/src/Main/resources/images/player/playerDownRight.png");
-        diverUpLeft = ChargerResource.chargeImage("/src/Main/resources/images/player/playerUp_Left.png");
-        diverUpRight = ChargerResource.chargeImage("/src/Main/resources/images/player/playerUp_Right.png");
+        diverDown = ChargerResource.chargeImage("/Main/resources/images/player/playerDown.png");
+        diverUp = ChargerResource.chargeImage("/Main/resources/images/player/playerUp.png");
+        diverLeft = ChargerResource.chargeImage("/Main/resources/images/player/playerLeft.png");
+        diverRight = ChargerResource.chargeImage("/Main/resources/images/player/playerRight.png");
+        diverDownLeft = ChargerResource.chargeImage("/Main/resources/images/player/playerDownLeft.png");
+        diverDownRight = ChargerResource.chargeImage("/Main/resources/images/player/playerDownRight.png");
+        diverUpLeft = ChargerResource.chargeImage("/Main/resources/images/player/playerUp_Left.png");
+        diverUpRight = ChargerResource.chargeImage("/Main/resources/images/player/playerUp_Right.png");
+        currentSprite = diverDown;
 
 
     }
@@ -149,8 +150,10 @@ public class Diver extends EntityGame {
      * @param g usamos los Graphics para dibujar la entidad en caso de la imagen no este vacia
      */
     public void dibujar(Graphics g) {
-        if (image != null) {
-            g.drawImage(image, x, y, getWidth(), getHeight(), null);
+        Image sprite = currentSprite != null ? currentSprite : image;
+
+        if (sprite != null) {
+            g.drawImage(sprite, x, y, getWidth(), getHeight(), null);
         }
     }
 

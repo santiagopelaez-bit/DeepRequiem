@@ -3,7 +3,6 @@ package Main.Controller;
 import Main.Model.Diver;
 import Main.Model.Game;
 import Main.Model.Ranking;
-import Main.resources.ChargerResource;
 import Main.resources.ReproduceSound;
 import Main.view.GameOverPanel;
 import Main.view.GamePanel;
@@ -92,13 +91,7 @@ public class ControllerGame {
 
         game.startGame(playerName);
 
-        var sound = ChargerResource.chargeSound("/src/Main/resources/sounds/SoundTrack.mp3");
-
-        if (sound != null) {
-
-            music.reproduceLoop(sound.toString());
-
-        }
+        music.reproduceLoop("/Main/resources/sounds/SoundTrack.mp3");
 
         startThreadAnimation();
 
@@ -159,7 +152,7 @@ public class ControllerGame {
 
         detener();
 
-        effect.reproduce(ChargerResource.chargeSound("src/Main/resources/sounds/GameOver.mp3").toString());
+        effect.reproduce("/Main/resources/sounds/GameOver.mp3");
 
         Diver diver = game.getDiver();
 

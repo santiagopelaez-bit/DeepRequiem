@@ -2,6 +2,7 @@ package Main.view;
 
 import Main.Model.PlayerRegister;
 import Main.Model.Ranking;
+import Main.resources.ChargerResource;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,7 +26,7 @@ public class GameOverPanel extends JPanel {
      */
     public GameOverPanel() {
         setLayout(new BorderLayout());
-        fondo = new ImageIcon(getClass().getResource("/images/BackGroundMenu.png")).getImage();
+        fondo = ChargerResource.chargeImage("/Main/resources/images/background/BackGroundMenu.png");
         Font pixelTitle = new Font("Monospaced", Font.BOLD, 38);
         Font pixelText = new Font("Monospaced", Font.BOLD, 18);
 

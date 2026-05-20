@@ -43,7 +43,7 @@ public class Game {
      */
     public void startGame(String namePlayer){
         String name = namePlayer == null || namePlayer.trim().isEmpty() ? "PLAYER" : namePlayer.trim();
-        Image image = ChargerResource.chargeImage("/images/diver.png");
+        Image image = ChargerResource.chargeImage("/Main/resources/images/player/playerDown.png");
         diver = new Diver(name, PANEL_WIDTH / 2 - 29, PANEL_HEIGHT - 120, image);
         treasures.clear();
         enemies.clear();
@@ -85,20 +85,20 @@ public class Game {
     public void generateObjects(){
         // Ajustes de dificultad
         if(ticks % 45 == 0){
-            String type = random.nextBoolean() ? "jellyfish" : "fish";
-            Image image = ChargerResource.chargeImage("/images/" + type + ".png");
+            String type = "jellyfish";
+            Image image = ChargerResource.chargeImage("/Main/resources/images/Jellyfish/Jellyfish_MediumFrame.png");
             enemies.add(new Enemy(type, randomX(52), PANEL_HEIGHT + 20, 2+ level, image));
         }
 
         if(ticks % 40 == 0){
-            String type = random.nextInt(4) == 0 ? "chest" : "pearl";
-            Image image = ChargerResource.chargeImage("/images/" + type + ".png");
+            String type = "chest";
+            Image image = ChargerResource.chargeImage("/Main/resources/images/objects/chest.png");
             treasures.add(new Treasure(type, randomX(42), PANEL_HEIGHT+ 20, image ) );
         }
 
         if(ticks % 6000 == 0){
-            Image image = ChargerResource.chargeImage("/images/powerup.png" );
-            powerUps.add(new PowerUp("Oxygen", randomX(40), PANEL_HEIGHT + 20, image));
+            Image image = ChargerResource.chargeImage("/Main/resources/images/objects/powerUp.png" );
+            powerUps.add(new PowerUp("oxigeno", randomX(40), PANEL_HEIGHT + 20, image));
         }
     }
 
@@ -180,7 +180,7 @@ public class Game {
 
     /**
      * Metodo para limpiar objetos cuando salgan de pantalla
-      */
+     */
     private void cleanObjects(){
         treasures.removeIf(treasure -> treasure.getY() + treasure.getHeight() < 40);
         enemies.removeIf(enemy -> enemy.getY() + enemy.getHeight() < 40);

@@ -14,8 +14,8 @@ public class WelcomePanel extends JPanel {
      */
     private final JButton instrucciones;
     private final JButton iniciar;
-    private final Image background = ChargerResource.chargeImage("src/Main/resources/images/background/BackGroundMenu.png");
-    private final Image logoUam = ChargerResource.chargeImage("src/Main/resources/images/background/BackGroundGame.png");
+    private final Image background = ChargerResource.chargeImage("/Main/resources/images/background/BackGroundMenu.png");
+    private final Image logoUam = ChargerResource.chargeImage("/Main/resources/images/icons/LogoUam.png");
 
     /**
      * con este metodo nos encargamos de que en pantalla se muestre el titulo del juego, la materia del proyecto
