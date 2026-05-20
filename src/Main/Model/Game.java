@@ -234,4 +234,8 @@ public class Game {
     public boolean isEnd() {
         return end;
     }
+
+    public Ranking getRanking() {
+        return ranking;
+    }
 }
