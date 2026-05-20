@@ -1,9 +1,6 @@
 package Main.view;
 
-import Main.Model.Enemy;
-import Main.Model.Game;
-import Main.Model.PowerUp;
-import Main.Model.Treasure;
+import Main.Model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -101,14 +98,17 @@ public class GamePanel extends JPanel {
      * se dibuja la parte de las vidas, puntaje, niveles y tiempo
      */
     private void dibujarHUD(Graphics g) {
-        g.setColor(new Color(0, 0, 0, 150));
-        g.fillRect(0, 0, getWidth(), 45);
+        Diver diver = game.getDiver();
+        g.setColor(new Color(0, 0, 0, 140));
+        g.fillRect(0, 0, getWidth(), 40);
         g.setColor(Color.WHITE);
         g.setFont(pixelFont);
 
-        g.drawString("PUNTAJE: 0", 20, 30);
-        g.drawString("VIDAS: 3", 250, 30);
-        g.drawString("NIVEL: 1", 450, 30);
-        g.drawString("TIEMPO: 0", 650, 30);
+        g.drawString("NOMBRE: " + diver.getNamePlayer(), 15, 25);
+        g.drawString("PUNTAJE: " + diver.getScore(), 190, 25);
+        g.drawString("VIDAS: " + diver.getLifes(), 310, 25);
+        g.drawString("NIVEL: " + game.getLevel(), 700, 25);
+        g.drawString("PROFUNDIDAD: " + game.getDeep() + "m", 520, 25);
+        g.drawString("TIEMPO: " + game.getTime() + "s", 400, 25);
     }
 }
