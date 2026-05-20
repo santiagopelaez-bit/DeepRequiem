@@ -105,11 +105,11 @@ public class GamePanel extends JPanel {
         g.setColor(Color.WHITE);
         g.setFont(pixelFont);
 
-        g.drawString("NOMBRE: " + diver.getNamePlayer(), 15, 25);
-        g.drawString("PUNTAJE: " + diver.getScore(), 190, 25);
-        g.drawString("VIDAS: " + diver.getLifes(), 310, 25);
-        g.drawString("NIVEL: " + game.getLevel(), 700, 25);
-        g.drawString("PROFUNDIDAD: " + game.getDeep() + "m", 520, 25);
-        g.drawString("TIEMPO: " + game.getTime() + "s", 400, 25);
+        g.drawString("NOMBRE:" + diver.getNamePlayer(), 15, 25);
+        g.drawString("PUNTAJE:" + diver.getScore(), 190, 25);
+        g.drawString("VIDAS:" + diver.getLifes(), 335, 25);
+        g.drawString("NIVEL:" + game.getLevel(), 800, 25);
+        g.drawString("PROFUNDIDAD:" + game.getDeep() + "m", 580, 25);
+        g.drawString("TIEMPO:" + game.getTime() + "s", 445, 25);
     }
 }
