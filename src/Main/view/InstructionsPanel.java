@@ -1,5 +1,7 @@
 package Main.view;
 
+import Main.resources.ChargerResource;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,6 +16,7 @@ public class InstructionsPanel extends JPanel {
     private final JButton botonVolver;
     private final Font pixelTitle;
     private final Font pixelText;
+    private final Image fondo;
 
     /**
      * en este constructor crearemos la fuente pixeleada
@@ -23,6 +26,7 @@ public class InstructionsPanel extends JPanel {
      */
     public InstructionsPanel() {
         setLayout(new BorderLayout());
+        fondo = ChargerResource.chargeImage("/Main/resources/images/background/BackGroundGame.png");
         setBackground(new Color(12, 87, 132));
         pixelTitle = new Font("Monospaced", Font.BOLD, 34);
         pixelText = new Font("Monospaced", Font.BOLD, 20);
@@ -66,5 +70,11 @@ public class InstructionsPanel extends JPanel {
      */
     public JButton getBotonVolver() {
         return botonVolver;
+    }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(fondo, 0, 0, this);
     }
 }
