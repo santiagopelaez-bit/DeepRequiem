@@ -30,7 +30,6 @@ public class WelcomePanel extends JPanel {
         JPanel PanelCentro = new JPanel(new GridLayout(5, 1, 8, 8));
         PanelCentro.setOpaque(false);
         PanelCentro.add(etiqueta("Materia: Programacion Orientada a Objetos"));
-        // TODO: Reemplazar por nombres reales de integrantes.
         PanelCentro.add(etiqueta("Integrantes: Santiago Pelaez Velez - Brayan Sanchez Amariles - Andres Londoño Tavares"));
         PanelCentro.add(etiqueta("Universidad Autonoma de Manizales"));
         PanelCentro.add(etiqueta("Adentrate en el lugar mas profundo de la tierra y encuentra valiosos tesoros"));
