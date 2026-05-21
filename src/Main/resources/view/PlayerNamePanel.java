@@ -15,6 +15,7 @@ public class PlayerNamePanel extends JPanel {
     private final JTextField campoNombre;
     private final JButton botonEmpezar;
     private final Font pixelFont;
+    private final Image fondo;
 
     /**
      * Constructor que contendra la fuente pixeleada y la decoracion de la ventana de nombre
@@ -25,6 +26,7 @@ public class PlayerNamePanel extends JPanel {
         pixelFont = ChargerResource.pixelFont(24f);
         setLayout(new GridBagLayout());
         setBackground(new Color(10, 55, 90));
+        fondo = ChargerResource.chargeImage("/Main/resources/images/background/BackGroundGame.png");
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(15, 15, 15, 15);
         gbc.gridx = 0;
@@ -65,6 +67,22 @@ public class PlayerNamePanel extends JPanel {
      */
     public void limpiar() {
         campoNombre.setText("");
+    }
+
+    /**
+     * Se dibuja el fondo
+     */
+    @Override
+    protected void paintComponent(Graphics g) {
+
+        super.paintComponent(g);
+
+        if (fondo != null) {
+            g.drawImage(fondo, 0, 0, getWidth(), getHeight(), null);
+        } else {
+            g.setColor(new Color(8, 30, 55));
+            g.fillRect(0, 0, getWidth(), getHeight());
+        }
     }
 
     public JTextField getCampoNombre() {

@@ -163,7 +163,7 @@ public class ControllerGame {
 
         ranking.addPlayer(diver);
 
-        panelGameOver.showResults(diver.getNamePlayer(), diver.getScore(), game.getTime(), game.getDeep(), ranking);
+        panelGameOver.showResults(diver.getNamePlayer(), diver.getScore(), game.getTime(), game.getDeep(), game.getRanking());
 
         gameWindow.mostrarPanel(GameWindow.GAMEOVER);
 

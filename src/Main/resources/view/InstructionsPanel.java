@@ -16,6 +16,7 @@ public class InstructionsPanel extends JPanel {
     private final JButton botonVolver;
     private final Font pixelTitle;
     private final Font pixelText;
+    private final Image fondo;
 
     /**
      * en este constructor crearemos la fuente pixeleada
@@ -28,6 +29,7 @@ public class InstructionsPanel extends JPanel {
         setBackground(new Color(12, 87, 132));
         pixelTitle = ChargerResource.pixelFont(34f);
         pixelText = ChargerResource.pixelFont(20f);
+        fondo = ChargerResource.chargeImage("/Main/resources/images/background/BackGroundMenu.png");
 
         JLabel titulo = new JLabel("INSTRUCCIONES", JLabel.CENTER);
         titulo.setFont(pixelTitle);
@@ -61,6 +63,22 @@ public class InstructionsPanel extends JPanel {
         label.setForeground(Color.WHITE);
         label.setFont(pixelText);
         return label;
+    }
+
+    /**
+     * Se dibuja el fondo
+     */
+    @Override
+    protected void paintComponent(Graphics g) {
+
+        super.paintComponent(g);
+
+        if (fondo != null) {
+            g.drawImage(fondo, 0, 0, getWidth(), getHeight(), null);
+        } else {
+            g.setColor(new Color(8, 30, 55));
+            g.fillRect(0, 0, getWidth(), getHeight());
+        }
     }
 
     /**
