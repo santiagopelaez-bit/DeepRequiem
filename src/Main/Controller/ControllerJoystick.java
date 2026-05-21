@@ -30,10 +30,7 @@ public class ControllerJoystick implements ControllerInput {
     }
 
     /**
-     *
-     * Indica si hay un Joystick real disponible para esta implementación
-     *
-     * @return false mientras no se integra una librería como JInput.
+     * Indica si hay un joystick real disponible.
      */
     public boolean isConected() {
 
