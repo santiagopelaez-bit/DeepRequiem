@@ -9,9 +9,11 @@ import java.awt.*;
  * Creamos la clase que mostrara todo los componentes del menu de inicio
  */
 public class WelcomePanel extends JPanel {
+
     /**
      * Aca nos encargamos de crear los botones para iniciar el juego y revisar las instrucciones del juego
      */
+    
     private final JButton instrucciones;
     private final JButton iniciar;
     private final Image background = ChargerResource.chargeImage("/Main/resources/images/background/BackGroundMenu.png");
