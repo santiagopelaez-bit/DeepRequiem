@@ -4,9 +4,9 @@ import Main.Model.Diver;
 import Main.Model.Game;
 import Main.Model.Ranking;
 import Main.resources.ReproduceSound;
-import Main.view.GameOverPanel;
-import Main.view.GamePanel;
-import Main.view.GameWindow;
+import Main.resources.view.GameOverPanel;
+import Main.resources.view.GamePanel;
+import Main.resources.view.GameWindow;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class ControllerGame {
     private final Ranking ranking;
     private final Game game;
     private final GamePanel gamePanel;
-    private final GameOverPanel panelGameOver;
+    private final Main.resources.view.GameOverPanel panelGameOver;
     private final GameWindow gameWindow;
     private final ControllerKeyboard controllerKeyboard;
     private final ControllerJoystick controllerJoystick;

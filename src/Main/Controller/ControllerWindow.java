@@ -3,7 +3,7 @@ package Main.Controller;
 import Main.Model.Game;
 import Main.Model.Ranking;
 import Main.resources.ReproduceSound;
-import Main.view.GameWindow;
+import Main.resources.view.GameWindow;
 
 public class ControllerWindow {
 

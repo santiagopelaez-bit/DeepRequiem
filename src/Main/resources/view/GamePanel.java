@@ -1,4 +1,4 @@
-package Main.view;
+package Main.resources.view;
 
 import Main.Model.*;
 import Main.resources.ChargerResource;

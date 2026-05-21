@@ -1,4 +1,4 @@
-package Main.view;
+package Main.resources.view;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,11 +18,11 @@ public class GameWindow extends JFrame {
 
     private final CardLayout cardLayout;
     private final JPanel contenedor;
-    private final WelcomePanel welcomePanel;
-    private final InstructionsPanel instructionsPanel;
-    private final PlayerNamePanel playerNamePanel;
-    private final GamePanel gamePanel;
-    private final GameOverPanel gameOverPanel;
+    private final Main.resources.view.WelcomePanel welcomePanel;
+    private final Main.resources.view.InstructionsPanel instructionsPanel;
+    private final Main.resources.view.PlayerNamePanel playerNamePanel;
+    private final Main.resources.view.GamePanel gamePanel;
+    private final Main.resources.view.GameOverPanel gameOverPanel;
 
 
     /**
@@ -37,11 +37,11 @@ public class GameWindow extends JFrame {
 
         cardLayout = new CardLayout();
         contenedor = new JPanel(cardLayout);
-        welcomePanel = new WelcomePanel();
-        instructionsPanel = new InstructionsPanel();
-        playerNamePanel = new PlayerNamePanel();
-        gamePanel = new GamePanel();
-        gameOverPanel = new GameOverPanel();
+        welcomePanel = new Main.resources.view.WelcomePanel();
+        instructionsPanel = new Main.resources.view.InstructionsPanel();
+        playerNamePanel = new Main.resources.view.PlayerNamePanel();
+        gamePanel = new Main.resources.view.GamePanel();
+        gameOverPanel = new Main.resources.view.GameOverPanel();
 
         contenedor.add(welcomePanel, BIENVENIDA);
         contenedor.add(instructionsPanel, INSTRUCCIONES);
@@ -60,23 +60,23 @@ public class GameWindow extends JFrame {
         cardLayout.show(contenedor, nombrePanel);
     }
 
-    public WelcomePanel getPanelBienvenida() {
+    public Main.resources.view.WelcomePanel getPanelBienvenida() {
         return welcomePanel;
     }
 
-    public InstructionsPanel getPanelInstrucciones() {
+    public Main.resources.view.InstructionsPanel getPanelInstrucciones() {
         return instructionsPanel;
     }
 
-    public PlayerNamePanel getPanelNombreJugador() {
+    public Main.resources.view.PlayerNamePanel getPanelNombreJugador() {
         return playerNamePanel;
     }
 
-    public GamePanel getPanelJuego() {
+    public Main.resources.view.GamePanel getPanelJuego() {
         return gamePanel;
     }
 
-    public GameOverPanel getPanelGameOver() {
+    public Main.resources.view.GameOverPanel getPanelGameOver() {
         return gameOverPanel;
     }
 }
