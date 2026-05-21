@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/DeepRequiem.iml" filepath="$PROJECT_DIR$/.idea/DeepRequiem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DeepRequiem.iml" filepath="$PROJECT_DIR$/DeepRequiem.iml" />
     </modules>
   </component>
 </project>

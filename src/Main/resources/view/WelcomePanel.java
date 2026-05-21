@@ -14,8 +14,9 @@ public class WelcomePanel extends JPanel {
      */
     private final JButton instrucciones;
     private final JButton iniciar;
-    private final Image background = ChargerResource.chargeImage("src/Main/resources/images/background/BackGroundMenu.png");
-    private final Image logoUam = ChargerResource.chargeImage("src/Main/resources/images/background/BackGroundGame.png");
+    private final Image background = ChargerResource.chargeImage("/Main/resources/images/background/BackGroundMenu.png");
+    private final Image logoUam = ChargerResource.chargeImage("/Main/resources/images/icons/LogoUam.png");
+    private final Font pixelText = ChargerResource.pixelFont(18f);
 
     /**
      * con este metodo nos encargamos de que en pantalla se muestre el titulo del juego, la materia del proyecto
@@ -38,6 +39,8 @@ public class WelcomePanel extends JPanel {
         botones.setOpaque(false);
         iniciar = new JButton(" Iniciar la aventura ");
         instrucciones = new JButton(" ¿Como jugar? ");
+        iniciar.setFont(pixelText);
+        instrucciones.setFont(pixelText);
         botones.add(iniciar);
         botones.add(instrucciones);
         PanelCentro.add(botones);
@@ -54,6 +57,7 @@ public class WelcomePanel extends JPanel {
     private JLabel etiqueta(String texto) {
         JLabel label = new JLabel(texto, JLabel.CENTER);
         label.setForeground(Color.WHITE);
+        label.setFont(pixelText);
 
         return label;
     }

@@ -1,5 +1,3 @@
-package Main;
-
 import Main.Controller.ControllerWindow;
 
 import javax.swing.*;

@@ -1,6 +1,7 @@
 package Main.view;
 
 import Main.Model.*;
+import Main.resources.ChargerResource;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,8 +24,8 @@ public class GamePanel extends JPanel {
      */
     public GamePanel() {
         setFocusable(true);
-        fondo = new ImageIcon(getClass().getResource("BackGroundMenu.png")).getImage();
-        pixelFont = new Font("Monospaced", Font.BOLD, 18);
+        fondo = ChargerResource.chargeImage("/Main/resources/images/background/BackGroundGame.png");
+        pixelFont = ChargerResource.pixelFont(18f);
     }
 
     /**

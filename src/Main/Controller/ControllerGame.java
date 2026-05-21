@@ -3,7 +3,6 @@ package Main.Controller;
 import Main.Model.Diver;
 import Main.Model.Game;
 import Main.Model.Ranking;
-import Main.resources.ChargerResource;
 import Main.resources.ReproduceSound;
 import Main.view.GameOverPanel;
 import Main.view.GamePanel;
@@ -24,6 +23,7 @@ public class ControllerGame {
     private final GameOverPanel panelGameOver;
     private final GameWindow gameWindow;
     private final ControllerKeyboard controllerKeyboard;
+    private final ControllerJoystick controllerJoystick;
     private final List<ControllerInput> inputs;
     private final ReproduceSound music;
     private final ReproduceSound effect;
@@ -42,6 +42,7 @@ public class ControllerGame {
         this.gamePanel = gameWindow.getPanelJuego();
         this.panelGameOver = gameWindow.getPanelGameOver();
         this.controllerKeyboard = new ControllerKeyboard();
+        this.controllerJoystick = new ControllerJoystick();
         this.inputs = new ArrayList<>();
         this.music = new ReproduceSound();
         this.effect = new ReproduceSound();
@@ -49,7 +50,7 @@ public class ControllerGame {
         gamePanel.setFocusable(true);
         gamePanel.addKeyListener(controllerKeyboard);
         addInput(controllerKeyboard);
-        addInput(new ControllerJoystick());
+        addInput(controllerJoystick);
 
         ranking = new Ranking();
 
@@ -90,15 +91,12 @@ public class ControllerGame {
 
         detener();
 
+        controllerKeyboard.reset();
+        controllerJoystick.refresh();
+
         game.startGame(playerName);
 
-        var sound = ChargerResource.chargeSound("/src/Main/resources/sounds/SoundTrack.mp3");
-
-        if (sound != null) {
-
-            music.reproduceLoop(sound.toString());
-
-        }
+        music.reproduceLoop("/Main/resources/sounds/SoundTrack.mp3");
 
         startThreadAnimation();
 
@@ -159,7 +157,7 @@ public class ControllerGame {
 
         detener();
 
-        effect.reproduce(ChargerResource.chargeSound("src/Main/resources/sounds/GameOver.mp3").toString());
+        effect.reproduce("/Main/resources/sounds/GameOver.mp3");
 
         Diver diver = game.getDiver();
 

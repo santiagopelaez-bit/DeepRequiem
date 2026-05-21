@@ -5,9 +5,13 @@ import javax.sound.sampled.AudioSystem;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 
 public class ChargerResource {
+
+    private static final String PIXEL_FONT_PATH = "/Main/resources/fonts/PixelFont.ttf";
+    private static Font pixelFont;
 
     public ChargerResource() {
     }
@@ -19,7 +23,7 @@ public class ChargerResource {
      */
     public static Image chargeImage(String ruta) {
 
-        URL image = ChargerResource.class.getResource(ruta);
+        URL image = getResource(ruta);
 
         if (image == null) {
 
@@ -42,11 +46,11 @@ public class ChargerResource {
      */
     public static AudioInputStream chargeSound(String ruta) {
 
-        URL audio = AudioInputStream.class.getResource(ruta);
+        URL audio = getResource(ruta);
 
         if (audio == null) {
 
-            System.out.print("Sonido no encontrado: " + ruta);
+            System.out.println("Sonido no encontrado: " + ruta);
 
             return null;
 
@@ -58,7 +62,7 @@ public class ChargerResource {
 
         } catch (Exception e) {
 
-            System.out.print("No se pudo cargar el sonido: " + ruta);
+            System.out.println("No se pudo cargar el sonido: " + ruta + " (" + e.getMessage() + ")");
             return null;
 
         }
@@ -74,7 +78,7 @@ public class ChargerResource {
      */
     public static Font chargeFont(String ruta) {
 
-        URL fontURL = ChargerResource.class.getResource(ruta);
+        URL fontURL = getResource(ruta);
 
         if (fontURL == null) {
 
@@ -87,15 +91,29 @@ public class ChargerResource {
         try {
 
             //Aquí cargamos la fuente que deseamos agregar al proyecto
-            Font pixelFont = Font.createFont(Font.TRUETYPE_FONT, fontURL.openStream()).deriveFont(50f);
+            Font loadedFont;
+
+            try (InputStream input = fontURL.openStream()) {
+
+                loadedFont = Font.createFont(Font.TRUETYPE_FONT, input);
+
+            }
 
             //Aquí obtenemos el entorno gráfico para poder registrar nuestra nueva fuente
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            try {
 
-            //Registramos nuestra nueva fuente en el entorno gráfico de Java
-            ge.registerFont(pixelFont);
+                GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 
-            return pixelFont;
+                //Registramos nuestra nueva fuente en el entorno gráfico de Java
+                ge.registerFont(loadedFont);
+
+            } catch (Throwable e) {
+
+                System.out.println("No se pudo registrar la fuente en el entorno gráfico: " + ruta + " (" + e.getMessage() + ")");
+
+            }
+
+            return loadedFont;
 
         } catch (FontFormatException | IOException e) {
 
@@ -104,6 +122,52 @@ public class ChargerResource {
             return null;
 
         }
+
+    }
+
+    public static Font pixelFont(float size) {
+
+        return pixelFont(size, Font.BOLD);
+
+    }
+
+    public static Font pixelFont(float size, int style) {
+
+        Font baseFont = loadPixelFont();
+
+        return baseFont.deriveFont(style, size);
+
+    }
+
+    private static Font loadPixelFont() {
+
+        if (pixelFont == null) {
+
+            pixelFont = chargeFont(PIXEL_FONT_PATH);
+
+        }
+
+        if (pixelFont == null) {
+
+            return new Font("Monospaced", Font.BOLD, 18);
+
+        }
+
+        return pixelFont;
+
+    }
+
+    public static URL getResource(String ruta) {
+
+        if (ruta == null || ruta.isBlank()) {
+
+            return null;
+
+        }
+
+        String normalized = ruta.startsWith("/") ? ruta : "/" + ruta;
+
+        return ChargerResource.class.getResource(normalized);
 
     }
 
