@@ -1,6 +1,7 @@
 package Main.resources;
 
 import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
@@ -83,10 +84,12 @@ public class ReproduceSound {
 
             }
 
+            AudioInputStream decodedAudio = decodeToPcm(audio);
+
             //Si el audio si existe entonces el sistema lo almacena y lo lee.
             clip = AudioSystem.getClip();
 
-            clip.open(audio);
+            clip.open(decodedAudio);
 
             //Evaluamos si el audio en cuestión lo utilizaremos como loop o no.
             if (loop) {
@@ -102,9 +105,33 @@ public class ReproduceSound {
         } catch (Exception e) {
 
             //En caso de no encontrarse el archivo de sonido se imprime el error en la consola.
-            System.out.println("No se logró reproducir el sonido: " + rute);
+            System.out.println("No se logró reproducir el sonido: " + rute + " (" + e.getMessage() + ")");
 
         }
+
+    }
+
+    private AudioInputStream decodeToPcm(AudioInputStream audio) {
+
+        AudioFormat baseFormat = audio.getFormat();
+
+        if (AudioFormat.Encoding.PCM_SIGNED.equals(baseFormat.getEncoding())) {
+
+            return audio;
+
+        }
+
+        AudioFormat decodedFormat = new AudioFormat(
+                AudioFormat.Encoding.PCM_SIGNED,
+                baseFormat.getSampleRate(),
+                16,
+                baseFormat.getChannels(),
+                baseFormat.getChannels() * 2,
+                baseFormat.getSampleRate(),
+                false
+        );
+
+        return AudioSystem.getAudioInputStream(decodedFormat, audio);
 
     }
 

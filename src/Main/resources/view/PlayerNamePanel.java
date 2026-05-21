@@ -1,5 +1,7 @@
 package Main.view;
 
+import Main.resources.ChargerResource;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -20,7 +22,7 @@ public class PlayerNamePanel extends JPanel {
      * tambien tendra los botones de empezar y el campo donde se pondra el nombre
      */
     public PlayerNamePanel() {
-        pixelFont = new Font("Monospaced", Font.BOLD, 24);
+        pixelFont = ChargerResource.pixelFont(24f);
         setLayout(new GridBagLayout());
         setBackground(new Color(10, 55, 90));
         GridBagConstraints gbc = new GridBagConstraints();
@@ -33,7 +35,7 @@ public class PlayerNamePanel extends JPanel {
         add(titulo, gbc);
         gbc.gridy++;
         campoNombre = new JTextField(20);
-        campoNombre.setFont(new Font("Monospaced", Font.BOLD, 18));
+        campoNombre.setFont(ChargerResource.pixelFont(18f));
         campoNombre.setBackground(Color.BLACK);
         campoNombre.setForeground(Color.GREEN);
         campoNombre.setCaretColor(Color.WHITE);
@@ -43,7 +45,7 @@ public class PlayerNamePanel extends JPanel {
         gbc.gridy++;
 
         botonEmpezar = new JButton("EMPEZAR PARTIDA");
-        botonEmpezar.setFont(new Font("Monospaced", Font.BOLD, 18));
+        botonEmpezar.setFont(ChargerResource.pixelFont(18f));
         botonEmpezar.setFocusPainted(false);
         botonEmpezar.setBackground(Color.DARK_GRAY);
         botonEmpezar.setForeground(Color.WHITE);

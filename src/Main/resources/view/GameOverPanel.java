@@ -27,8 +27,8 @@ public class GameOverPanel extends JPanel {
     public GameOverPanel() {
         setLayout(new BorderLayout());
         fondo = ChargerResource.chargeImage("/Main/resources/images/background/BackGroundMenu.png");
-        Font pixelTitle = new Font("Monospaced", Font.BOLD, 38);
-        Font pixelText = new Font("Monospaced", Font.BOLD, 18);
+        Font pixelTitle = ChargerResource.pixelFont(38f);
+        Font pixelText = ChargerResource.pixelFont(18f);
 
         /**
          * Ponemos el titulo de game over
@@ -94,7 +94,7 @@ public class GameOverPanel extends JPanel {
     private JLabel etiqueta(String text) {
         JLabel label = new JLabel(text, JLabel.CENTER);
         label.setForeground(Color.WHITE);
-        label.setFont(new Font("Monospaced", Font.BOLD, 18));
+        label.setFont(ChargerResource.pixelFont(18f));
         return label;
     }
 

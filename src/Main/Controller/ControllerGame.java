@@ -23,6 +23,7 @@ public class ControllerGame {
     private final GameOverPanel panelGameOver;
     private final GameWindow gameWindow;
     private final ControllerKeyboard controllerKeyboard;
+    private final ControllerJoystick controllerJoystick;
     private final List<ControllerInput> inputs;
     private final ReproduceSound music;
     private final ReproduceSound effect;
@@ -41,6 +42,7 @@ public class ControllerGame {
         this.gamePanel = gameWindow.getPanelJuego();
         this.panelGameOver = gameWindow.getPanelGameOver();
         this.controllerKeyboard = new ControllerKeyboard();
+        this.controllerJoystick = new ControllerJoystick();
         this.inputs = new ArrayList<>();
         this.music = new ReproduceSound();
         this.effect = new ReproduceSound();
@@ -48,7 +50,7 @@ public class ControllerGame {
         gamePanel.setFocusable(true);
         gamePanel.addKeyListener(controllerKeyboard);
         addInput(controllerKeyboard);
-        addInput(new ControllerJoystick());
+        addInput(controllerJoystick);
 
         ranking = new Ranking();
 
@@ -88,6 +90,9 @@ public class ControllerGame {
     public void start(String playerName) {
 
         detener();
+
+        controllerKeyboard.reset();
+        controllerJoystick.refresh();
 
         game.startGame(playerName);
 

@@ -15,7 +15,15 @@ public class ControllerKeyboard extends KeyAdapter implements ControllerInput {
 
     private boolean pause;
 
-    private Game game;
+    public void reset() {
+
+        up = false;
+        down = false;
+        right = false;
+        left = false;
+        pause = false;
+
+    }
 
     /**
      * Este método nos ayuda a cambiar de estado una tecla a "false" o a "true"
@@ -24,8 +32,6 @@ public class ControllerKeyboard extends KeyAdapter implements ControllerInput {
      * @param active
      */
     private void changeState(int KeyCode, boolean active) {
-
-        this.game = game;
 
         if (KeyCode == KeyEvent.VK_W || KeyCode == KeyEvent.VK_UP) {
 
@@ -175,7 +181,7 @@ public class ControllerKeyboard extends KeyAdapter implements ControllerInput {
         }
 
 
-        diver.move((int) dx, (int) dy, game.PANEL_WIDTH, game.PANEL_HEIGHT);
+        diver.move((int) dx, (int) dy, Game.PANEL_WIDTH, Game.PANEL_HEIGHT);
 
     }
 }

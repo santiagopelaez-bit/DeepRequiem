@@ -25,7 +25,7 @@ public class GamePanel extends JPanel {
     public GamePanel() {
         setFocusable(true);
         fondo = ChargerResource.chargeImage("/Main/resources/images/background/BackGroundGame.png");
-        pixelFont = new Font("Monospaced", Font.BOLD, 18);
+        pixelFont = ChargerResource.pixelFont(18f);
     }
 
     /**

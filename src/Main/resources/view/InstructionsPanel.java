@@ -1,5 +1,7 @@
 package Main.view;
 
+import Main.resources.ChargerResource;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -24,8 +26,8 @@ public class InstructionsPanel extends JPanel {
     public InstructionsPanel() {
         setLayout(new BorderLayout());
         setBackground(new Color(12, 87, 132));
-        pixelTitle = new Font("Monospaced", Font.BOLD, 34);
-        pixelText = new Font("Monospaced", Font.BOLD, 20);
+        pixelTitle = ChargerResource.pixelFont(34f);
+        pixelText = ChargerResource.pixelFont(20f);
 
         JLabel titulo = new JLabel("INSTRUCCIONES", JLabel.CENTER);
         titulo.setFont(pixelTitle);
