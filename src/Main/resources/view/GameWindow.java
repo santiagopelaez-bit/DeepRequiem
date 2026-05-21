@@ -29,7 +29,7 @@ public class GameWindow extends JFrame {
      * ahora creamos un constructor que creara la ventana con sus distintos componentes
      */
     public GameWindow() {
-        setTitle("Tesoros del Abismo");
+        setTitle("DeepRequiem");
         setSize(900, 650);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
